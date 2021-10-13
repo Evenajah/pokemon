@@ -1,4 +1,23 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<ng-template #pokeList>
+  <div class="wrap-pokemon fadein" style="height:320px">
+    <ng-container *ngFor="let pokemon of pokemonList2$ | async">
+      <img
+        class="fadein"
+        style="display:block"
+        src="{{ pokemon.sprites.front_default }}"
+      />
+    </ng-container>
+  </div>
+</ng-template>
+
+<img
+  style="display:block;margin:0 auto"
+  *ngIf="loading; else pokeList"
+  src="https://icon-library.com/images/loading-gif-icon/loading-gif-icon-14.jpg"
+  alt="loading"
+/>
+
+<div class="wrap-pokemon">
+  <button class="btn-page" (click)="backPage()">< Back</button>
+  <button class="btn-page" (click)="nextPage()">Next ></button>
+</div>
